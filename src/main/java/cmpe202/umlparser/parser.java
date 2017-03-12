@@ -12,7 +12,7 @@ public class parser{
 	
 	parser(String sourcePath, String destPath){
 		this.sourceFilePath = sourcePath;
-		this.destFilePath = destPath;
+		this.destFilePath = sourceFilePath + "\\" + destPath + ".jpeg";
 		
 	}
 	
