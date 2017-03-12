@@ -24,7 +24,7 @@
   <dependency>
    <groupId>net.sourceforge.plantuml</groupId>
    <artifactId>plantuml</artifactId>
-   <version>7999</version>
+   <version>8057</version>
 </dependency>
 
     <dependency>
