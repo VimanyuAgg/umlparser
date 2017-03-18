@@ -1,5 +1,9 @@
 package cmpe202.umlparser;
-
+/*
+ * App.java contains the main method which drives the program
+ * This takes input as two arguments as per the specifications in readme
+ *
+ */
 class App{
 
 	public static void main(String[] args){
