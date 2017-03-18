@@ -8,6 +8,7 @@ import com.github.javaparser.*;
 import com.github.javaparser.ast.*;
 import com.github.javaparser.ast.body.*;
 import com.github.javaparser.ast.type.ClassOrInterfaceType;
+import java.util.*;
 
 public class parser{
 
@@ -25,8 +26,8 @@ public class parser{
 
 		//Dummy method created
 
-		compilationArray = getArray(sourceFilePath);
-		createDiag(compilation)
+		compilationArray.add(sourceFilePath);
+
 
 	}
 
