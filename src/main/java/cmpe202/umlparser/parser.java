@@ -34,7 +34,7 @@ public class parser{
 	}
 	
 	 private ArrayList<CompilationUnit> getArray(String inPath)
-	            throws Throwable {
+	            throws Exception {
 		 
 		 File folder = new File(inPath);
 	        ArrayList<CompilationUnit> compilationArray = new ArrayList<CompilationUnit>();
