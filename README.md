@@ -7,7 +7,7 @@ This project creats a Parser which converts Java Source Code into a UML Class Di
 ## Requirements:
 * The parser must be executable on the command line with the following format:
 ```
-umlparser <source folder> <output file name>
+   umlparser <source folder> <output file name>
 ** <source folder> is a folder name where all the .java source files will be
 ** <output file name> is the name of the output image file you program will generate ( .jpg, .png or .pdf format)
 ```
@@ -15,6 +15,7 @@ umlparser <source folder> <output file name>
 
 ## Project scope:
 **Static and Abstract Notation**:  Static and Abstract notation in UML are usually denoted as "underline" and "italic", but rarely used in practice.  Parsing this is not a requirement for this project.
+
 **Relationships Between Interfaces**:  Although conceptually possible in UML, relationships between Interfaces (i.e. inheritance, dependencies) are rarely thought of in practice and generally bad practice.  As such, this project does not expect parser to detect these situations.  
 
 ## Associated Waffle Board link: 
