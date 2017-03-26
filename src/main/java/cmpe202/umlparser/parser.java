@@ -10,6 +10,7 @@ import com.github.javaparser.ast.body.*;
 import com.github.javaparser.ast.type.ClassOrInterfaceType;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.util.*;
 
 public class parser{
@@ -52,5 +53,3 @@ public class parser{
 	        return compilationArray;
 	    }
 	 }
-	
-}
