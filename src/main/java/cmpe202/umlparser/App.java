@@ -13,7 +13,12 @@ class App{
 		}
 		else if (args[0].equals(("sqnc")))
 		{parser myUmlParser = new parser(args[1],args[2]);
-			myUmlParser.startParsing();
+			try {
+				myUmlParser.startParsing();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		else{
 			System.out.println("Invalid parameter in arguments");
