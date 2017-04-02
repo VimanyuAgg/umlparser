@@ -21,6 +21,8 @@ All Java source files to be parsed should be in the "default" package. There sho
 
 **Relationships Between Interfaces**:  Although conceptually possible in UML, relationships between Interfaces (i.e. inheritance, dependencies) are rarely thought of in practice and generally bad practice.  As such, this project does not expect parser to detect these situations.  
 
+***Only Public Methods***: (private, package and protected scope methods are ignored in the Class diagram)
+
 ## Associated Waffle Board link: 
 http://waffle.io/VimanyuAgg/umlparser
 
