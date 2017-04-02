@@ -16,7 +16,7 @@ class App{
 			try {
 				myUmlParser.startParsing();
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
+
 				e.printStackTrace();
 			}
 		}
