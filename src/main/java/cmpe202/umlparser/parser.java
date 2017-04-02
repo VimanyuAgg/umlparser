@@ -17,15 +17,11 @@ public class parser{
 
 	String sourceFilePath; //Holds the path of the source file
 	String destFilePath;   //Holds the path of the destination file
-	String className;      //Holds the class Name of the source file
-	String methodName;     //Holds the method Name of the source file
 
 	ArrayList<CompilationUnit> compilationArray;
 
-	parser(String sourcePath, String destPath, String className, String methodName){
+	parser(String sourcePath, String destPath){
 		this.sourceFilePath = sourcePath;
-		this.className = className;
-		this.methodName = methodName;
 		this.destFilePath = sourceFilePath + "\\" + destPath + ".jpeg";
 
 	}
