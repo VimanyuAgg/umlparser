@@ -22,10 +22,11 @@ public class parser{
 
 	ArrayList<CompilationUnit> compilationArray;
 
-	parser(String sourcePath, String destPath){
+	parser(String sourcePath, String destPath, String className, String methodName){
 		this.sourceFilePath = sourcePath;
 		this.destFilePath = sourceFilePath + "\\" + destPath + ".jpeg";
-
+		this.className = className;
+		this.methodName = methodName;
 	}
 
 	public void startParsing() throws Exception{
