@@ -14,28 +14,31 @@ import java.io.FileInputStream;
 import java.util.*;
 
 public class parser{
-	
+
 	String sourceFilePath;
 	String destFilePath;
+	String className;
+	String methodName;
+
 	ArrayList<CompilationUnit> compilationArray;
-	
+
 	parser(String sourcePath, String destPath){
 		this.sourceFilePath = sourcePath;
 		this.destFilePath = sourceFilePath + "\\" + destPath + ".jpeg";
-		
+
 	}
-	
+
 	public void startParsing() throws Exception{
-		
+
 		//Dummy method created
-		
-		compilationArray= getArray(sourceFilePath);	
-		
+
+		compilationArray= getArray(sourceFilePath);
+
 	}
-	
+
 	 private ArrayList<CompilationUnit> getArray(String inPath)
 	            throws Exception {
-		 
+
 		 File folder = new File(inPath);
 	        ArrayList<CompilationUnit> compilationArray = new ArrayList<CompilationUnit>();
 	        for (final File file : folder.listFiles()) {
@@ -53,3 +56,4 @@ public class parser{
 	        return compilationArray;
 	    }
 	 }
+
