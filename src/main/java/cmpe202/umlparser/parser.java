@@ -15,18 +15,19 @@ import java.util.*;
 
 public class parser{
 
-	String sourceFilePath;
-	String destFilePath;
-	String className;
-	String methodName;
+	String sourceFilePath; //Holds the path of the source file
+	String destFilePath;   //Holds the path of the destination file
+	String className;      //Holds the class Name of the source file
+	String methodName;     //Holds the method Name of the source file
 
 	ArrayList<CompilationUnit> compilationArray;
 
 	parser(String sourcePath, String destPath, String className, String methodName){
 		this.sourceFilePath = sourcePath;
-		this.destFilePath = sourceFilePath + "\\" + destPath + ".jpeg";
 		this.className = className;
 		this.methodName = methodName;
+		this.destFilePath = sourceFilePath + "\\" + destPath + ".jpeg";
+
 	}
 
 	public void startParsing() throws Exception{
