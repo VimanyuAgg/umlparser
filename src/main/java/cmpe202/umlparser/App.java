@@ -6,7 +6,7 @@ package cmpe202.umlparser;
  */
 class App{
 
-	public static void main(String[] args){
+	public static void main(String[] args) throws Exception{
 		if(args.length !=2){
 			System.out.println("Error: please enter valid arguments");
 			System.exit(0);
