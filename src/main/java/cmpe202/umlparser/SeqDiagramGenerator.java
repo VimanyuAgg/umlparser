@@ -28,4 +28,12 @@ class SeqDiagramGenerator{
 
     }
 
+    public void startParsing() throws Exception{
+
+        //Dummy method created
+
+
+
+    }
+
 }
