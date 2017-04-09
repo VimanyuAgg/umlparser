@@ -68,4 +68,8 @@ class SeqDiagramGenerator{
         return compilationArray;
     }
 
+    private void createMappings(){
+        //Dummy method
+    }
+
 }
