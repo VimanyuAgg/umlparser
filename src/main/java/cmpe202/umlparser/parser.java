@@ -61,5 +61,15 @@ public class parser{
 	        }
 	        return compilationArray;
 	    }
+
+	 private void buildMap(ArrayList<CompilationUnit> cu){
+		 //Dummy method
+
 	 }
+
+
+}
+
+
+
 
