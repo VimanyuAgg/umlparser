@@ -62,9 +62,16 @@ public class parser{
 	        return compilationArray;
 	    }
 
-	 private void buildMap(ArrayList<CompilationUnit> cu){
+	 private void createMap(ArrayList<CompilationUnit> cu){
 		 //Dummy method
 
+	 }
+
+	 private String parsingHandler(CompilationUnit c){
+		 String result="";
+
+		 //Dummy method
+		 return result;
 	 }
 
 
