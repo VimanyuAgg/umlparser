@@ -17,6 +17,7 @@ public class parser{
 
 	String sourceFilePath; //Holds the path of the source file
 	String destFilePath;   //Holds the path of the destination file
+	String yumlParse;
 
 	ArrayList<CompilationUnit> compilationArray;
 
@@ -31,6 +32,13 @@ public class parser{
 		//Dummy method created
 
 		compilationArray= getArray(sourceFilePath);
+        createMap(compilationArray);
+        for (CompilationUnit c : compilationArray)
+            yumlParse += parsingHandler(c);
+
+
+        System.out.println("Unique Code: " + yumlParse);
+
 
 	}
 
