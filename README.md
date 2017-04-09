@@ -17,7 +17,7 @@ All Java source files to be parsed should be in the "default" package. There sho
 * All the Java source files will be in the "default" package.  That is, there will be no sub-directories in the source folder.
 
 ## Project scope:
-**Static and Abstract Notation**:  Static and Abstract notation in UML are usually denoted as "underline" and "italic", but rarely used in practice.  Parsing this is not a requirement for this project.
+**Static and Abstract Notation**:  Static and Abstract notation in UML are usually denoted as "underline" and "italic", but rarely used in practice. Thus, parsing this is not included in the scope of this project
 
 **Relationships Between Interfaces**:  Although conceptually possible in UML, relationships between Interfaces (i.e. inheritance, dependencies) are rarely thought of in practice and generally bad practice.  As such, this project does not expect parser to detect these situations.  
 
