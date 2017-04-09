@@ -72,4 +72,9 @@ class SeqDiagramGenerator{
         //Dummy method
     }
 
+    private void parsingHandler(String methodName){
+        //Dummy method
+
+    }
+
 }
