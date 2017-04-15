@@ -81,7 +81,21 @@ class SeqDiagramGenerator{
                     if (bd instanceof MethodDeclaration) {
                         MethodDeclaration md = (MethodDeclaration) bd;
                         ArrayList<MethodCallExpr> mcea = new ArrayList<MethodCallExpr>();
-                    }
+                        for (Object bs : md.getChildNodes()) {
+                            if (bs instanceof BlockStmt) {
+                                for (Object es : ((Node) bs)
+                                        .getChildNodes()) {
+                                    if (es instanceof ExpressionStmt) {
+                                        if (((ExpressionStmt) (es))
+                                                .getExpression() instanceof MethodCallExpr) {
+                                            mcea.add(
+                                                    (MethodCallExpr) (((ExpressionStmt) (es))
+                                                            .getExpression()));
+                                        }
+                                    }
+                                }
+                            }
+                        }
     }
 
     private void parsingHandler(String methodName){
