@@ -70,6 +70,18 @@ class SeqDiagramGenerator{
 
     private void createMappings(){
         //Dummy method
+        for (CompilationUnit cu : compilationArray) {
+            String className = "";
+            List<TypeDeclaration<?>> typeDec = cu.getTypes();
+            for (Node n : typeDec) {
+                ClassOrInterfaceDeclaration classInterfaceDeclaration = (ClassOrInterfaceDeclaration) n;
+                className = classInterfaceDeclaration.getName().toString();
+                for (BodyDeclaration bd : ((TypeDeclaration) classInterfaceDeclaration)
+                        .getMembers().getTypes()) {
+                    if (bd instanceof MethodDeclaration) {
+                        MethodDeclaration md = (MethodDeclaration) bd;
+                        ArrayList<MethodCallExpr> mcea = new ArrayList<MethodCallExpr>();
+                    }
     }
 
     private void parsingHandler(String methodName){
