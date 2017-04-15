@@ -1,8 +1,11 @@
 # umlparser
 Personal Project for CMPE202
 
+## Associated Waffle Board link: 
+http://waffle.io/VimanyuAgg/umlparser
+
 ## Description:
-This project creats a Parser which converts Java Source Code into a UML Class Diagram.
+This project creats a Parser which converts Java Source Code into a UML Class Diagram as well as Sequence Diagram.
 
 ## Project - Pre-requisites:
 All Java source files to be parsed should be in the "default" package. There should be no subdirectories.
@@ -23,7 +26,5 @@ All Java source files to be parsed should be in the "default" package. There sho
 
 ***Only Public Methods***: (private, package and protected scope methods are ignored in the Class diagram)
 
-## Associated Waffle Board link: 
-http://waffle.io/VimanyuAgg/umlparser
 
 
