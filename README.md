@@ -22,7 +22,7 @@ All Java source files to be parsed should be in the "default" package. There sho
 ## Project scope:
 **Static and Abstract Notation**:  Static and Abstract notation in UML are usually denoted as "underline" and "italic", but rarely used in practice. Thus, parsing this is not included in the scope of this project
 
-**Relationships Between Interfaces**:  Although conceptually possible in UML, relationships between Interfaces (i.e. inheritance, dependencies) are rarely thought of in practice and generally bad practice.  As such, this project does not expect parser to detect these situations.  
+**Relationships Between Interfaces**:  Although conceptually possible in UML, relationships between Interfaces (i.e. inheritance, dependencies) are rarely thought of in practice and generally bad practice.  As such, this parser does not include detection of these situations.  
 
 ***Only Public Methods***: (private, package and protected scope methods are ignored in the Class diagram)
 
