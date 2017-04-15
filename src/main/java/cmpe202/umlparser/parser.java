@@ -65,10 +65,10 @@ public class parser{
 
 	 private void createMap(ArrayList<CompilationUnit> cu){
 		 for (CompilationUnit c : cu) {
-	            List<TypeDeclaration> cl = c.getTypes();
+	            List<TypeDeclaration<?>> cl = c.getTypes();
 	            for (Node n : cl) {
 	                ClassOrInterfaceDeclaration classInterfaceDeclaration = (ClassOrInterfaceDeclaration) n;
-	                m.put(classInterfaceDeclaration.getName(), classInterfaceDeclaration.isInterface());
+	                m.put(classInterfaceDeclaration.getName().toString(), classInterfaceDeclaration.isInterface());
 
 	            }
 	        }
