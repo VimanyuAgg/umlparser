@@ -18,6 +18,7 @@ public class parser{
 	String sourceFilePath; //Holds the path of the source file
 	String destFilePath;   //Holds the path of the destination file
 	String yumlParse;
+	HashMap<String, Boolean> m;
 
 	ArrayList<CompilationUnit> compilationArray;
 
@@ -63,7 +64,14 @@ public class parser{
 	    }
 
 	 private void createMap(ArrayList<CompilationUnit> cu){
-		 //Dummy method
+		 for (CompilationUnit c : cu) {
+	            List<TypeDeclaration> cl = c.getTypes();
+	            for (Node n : cl) {
+	                ClassOrInterfaceDeclaration classInterfaceDeclaration = (ClassOrInterfaceDeclaration) n;
+	                m.put(classInterfaceDeclaration.getName(), classInterfaceDeclaration.isInterface());
+
+	            }
+	        }
 
 	 }
 
