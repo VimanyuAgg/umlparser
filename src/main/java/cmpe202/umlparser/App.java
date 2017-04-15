@@ -12,10 +12,16 @@ class App{
 			System.exit(0);
 		}
 
+		/*
+		 * Below condition takes care of making class diagrams
+		 */
 		else if(args[0].equals("cls")){
 			parser myUmlParser = new parser(args[1],args[2]);
 			myUmlParser.startParsing();
 		}
+		/*
+		 * Below condition takes care of making sequence diagrams
+		 */
 		else if (args[0].equals("sqnc"))
 		{SeqDiagramGenerator myUmlParser = new SeqDiagramGenerator(args[1],args[2],args[3], args[4]);
 			try {
