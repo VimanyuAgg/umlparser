@@ -1,5 +1,12 @@
 package cmpe202.umlparser;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+
 public class GenerateDiagram {
     public static Boolean generatePNG(String grammar, String outPath) {
 
