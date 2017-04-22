@@ -96,6 +96,43 @@ public class parser{
 	        }
 	        class += coi.getName();
 	        classNameShort = coi.getName();
+
+	         // Parse Methods
+        boolean nextParam = false;
+        for (BodyDeclaration bd : ((TypeDeclaration) node).getMembers()) {
+            // Getting Methods
+            if (bd instanceof ConstructorDeclaration) {
+                ConstructorDeclaration cd = ((ConstructorDeclaration) bd);
+                if (cd.getDeclarationAsString().startsWith("public")
+                        && !coi.isInterface()) {
+                    if (nextParam)
+                        methods += ";";
+                    methods += "+ " + cd.getName() + "(";
+                    for (Object gcn : cd.getChildrenNodes()) {
+                        if (gcn instanceof Parameter) {
+                            Parameter paramCast = (Parameter) gcn;
+                            String paramClass = paramCast.getType().toString();
+                            String paramName = paramCast.getChildrenNodes()
+                                    .get(0).toString();
+                            methods += paramName + " : " + paramClass;
+                            if (map.containsKey(paramClass)
+                                    && !map.get(classShortName)) {
+                                additions += "[" + classShortName
+                                        + "] uses -.->";
+                                if (map.get(paramClass))
+                                    additions += "[<<interface>>;" + paramClass
+                                            + "]";
+                                else
+                                    additions += "[" + paramClass + "]";
+                            }
+                            additions += ",";
+                        }
+                    }
+                    methods += ")";
+                    nextParam = true;
+                }
+            }
+        }
 		 return result;
 	 }
 
