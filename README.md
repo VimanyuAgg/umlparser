@@ -8,7 +8,8 @@ http://waffle.io/VimanyuAgg/umlparser
 This project creats a Parser which converts Java Source Code into a UML Class Diagram as well as Sequence Diagram.
 
 ## Project - Pre-requisites:
-All Java source files to be parsed should be in the "default" package. There should be no subdirectories.
+** All Java source files to be parsed should be in the "default" package. 
+** No subdirectories should be present inside the default package.
 
 ## Requirements:
 * The parser must be executable on the command line with the following format:
