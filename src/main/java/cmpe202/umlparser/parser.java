@@ -76,9 +76,26 @@ public class parser{
 	 }
 
 	 private String parsingHandler(CompilationUnit c){
-		 String result="";
+		 String res = "";
+	        String class = "";
+	        String classNameShort = "";
+	        String methods = "";
+	        String fields = "";
+	        String additions = ",";
 
-		 //Dummy method
+	        ArrayList<String> makeFieldPublic = new ArrayList<String>();
+	        List<TypeDeclaration> ltd = cu.getTypes();
+	        Node node = ltd.get(0); // assuming no nested classes
+
+	        // Get class
+	        ClassOrInterfaceDeclaration coi = (ClassOrInterfaceDeclaration) node;
+	        if (coi.isInterface()) {
+	            class = "[" + "<<interface>>;";
+	        } else {
+	            class = "[";
+	        }
+	        class += coi.getName();
+	        classNameShort = coi.getName();
 		 return result;
 	 }
 
