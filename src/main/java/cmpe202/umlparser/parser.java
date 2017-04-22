@@ -126,6 +126,13 @@ public class parser{
 	        return result;
 	    }
 
+	     private String makeyumlCodeUnique(String blob) {
+	        String[] codeSplitter = blob.split(",");
+	        String[] uniqueCodeLines = new LinkedHashSet<String>(
+	                Arrays.asList(codeSplitter)).toArray(new String[0]);
+	        String result = String.join(",", uniqueCodeLines);
+	        return result;
+	    }
 }
 
 
