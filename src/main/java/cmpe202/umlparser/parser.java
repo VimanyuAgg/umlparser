@@ -107,6 +107,25 @@ public class parser{
 	        return foo;
 	    }
 
+	   private String parseSumOperation() {
+	        String result = "";
+	        Set<String> keys = mapClassConn.keySet();
+	        for (String i : keys) {
+	            String[] classes = i.split("-");
+	            if (m.get(classes[0]))
+	                result += "[<<interface>>;" + classes[0] + "]";
+	            else
+	                result += "[" + classes[0] + "]";
+	            result += mapClassConn.get(i); // Add connection
+	            if (m.get(classes[1]))
+	                result += "[<<interface>>;" + classes[1] + "]";
+	            else
+	                result += "[" + classes[1] + "]";
+	            result += ",";
+	        }
+	        return result;
+	    }
+
 }
 
 
