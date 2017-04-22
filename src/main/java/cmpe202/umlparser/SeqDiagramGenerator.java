@@ -96,10 +96,63 @@ class SeqDiagramGenerator{
                                 }
                             }
                         }
+                    }
     }
 
     private void parsingHandler(String methodName){
-        //Dummy method
+        private void parse(String callerFunc) {
+
+            for (MethodCallExpr mce : mapMethodCalls.get(callerFunc)) {
+                String callerClass = mapMethodClass.get(callerFunc);
+                String calleeFunc = mce.getName();
+                String calleeClass = mapMethodClass.get(calleeFunc);
+                if (mapMethodClass.containsKey(calleeFunc)) {
+                    pumlCode += callerClass + " -> " + calleeClass + " : "
+                            + mce.toStringWithoutComments() + "\n";
+                    pumlCode += "activate " + calleeClass + "\n";
+                    parse(calleeFunc);
+                    pumlCode += calleeClass + " -->> " + callerClass + "\n";
+                    pumlCode += "deactivate " + calleeClass + "\n";
+                }
+            }
+        }
+
+        private void buildMaps() {
+            for (CompilationUnit cu : cuArray) {
+                String className = "";
+                List<TypeDeclaration> td = cu.getTypes();
+                for (Node n : td) {
+                    ClassOrInterfaceDeclaration coi = (ClassOrInterfaceDeclaration) n;
+                    className = coi.getName();
+                    for (BodyDeclaration bd : ((TypeDeclaration) coi)
+                            .getMembers()) {
+                        if (bd instanceof MethodDeclaration) {
+                            MethodDeclaration md = (MethodDeclaration) bd;
+                            ArrayList<MethodCallExpr> mcea = new ArrayList<MethodCallExpr>();
+                            for (Object bs : md.getChildrenNodes()) {
+                                if (bs instanceof BlockStmt) {
+                                    for (Object es : ((Node) bs)
+                                            .getChildrenNodes()) {
+                                        if (es instanceof ExpressionStmt) {
+                                            if (((ExpressionStmt) (es))
+                                                    .getExpression() instanceof MethodCallExpr) {
+                                                mcea.add(
+                                                        (MethodCallExpr) (((ExpressionStmt) (es))
+                                                                .getExpression()));
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            mapMethodCalls.put(md.getName(), mcea);
+                            mapMethodClass.put(md.getName(), className);
+                        }
+                    }
+                }
+            }
+            //printMaps();
+        }
+
 
     }
 
