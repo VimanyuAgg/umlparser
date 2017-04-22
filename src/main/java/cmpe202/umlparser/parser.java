@@ -99,6 +99,13 @@ public class parser{
 		 return result;
 	 }
 
+	 private String modifyBrackets(String foo) {
+	        foo = foo.replace("[", "(");
+	        foo = foo.replace("]", ")");
+	        foo = foo.replace("<", "(");
+	        foo = foo.replace(">", ")");
+	        return foo;
+	    }
 
 }
 
