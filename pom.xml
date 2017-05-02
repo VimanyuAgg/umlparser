@@ -7,7 +7,7 @@
   <version>0.0.1-SNAPSHOT</version>
   <packaging>jar</packaging>
 
-  <name>umlparser</name>
+  <name>umlparser4CMPE202</name>
   <url>http://maven.apache.org</url>
 
   <properties>
@@ -34,4 +34,19 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
+
+  <build>
+    <plugins>
+      
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <configuration>
+         <executable>true</executable>
+        </configuration>
+      </plugin>
+    </plugins>
+
+  </build>
+
 </project>
