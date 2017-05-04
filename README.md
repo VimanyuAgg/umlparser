@@ -17,12 +17,14 @@ Please note that :
 * source folder should contain java files to be parsed (with no subdirectories)
 
 ## Instructions for umlparser (Sequence Diagrams)
-Add the below arguments while running the program. (Main method is in **seq-umlparser**/src/main/java/App.java)
+In order to generate sequence diagram add the <source folder location in quotes> < output file name> for sequence diagram in the argument.
+So that the entire query with class diagram and sequence diagram becomes:
+
 ```
-umlparser <source folder location in quotes> <output file name>
+umlparser <source folder location in quotes--for class diagram> <output file name--for class diagram> <source folder location in quotes--for sequence diagram> <output file name--for sequence diagram>
 ```
 Please note that 
-* source folder should contain a Main.java with test sequence being in a main static method
+* source folder for sequence diagram should contain a Main.java with test sequence being in a main static method
 * output file will be a PNG and user does not need to add .png in < output file name>
 * source folder should contain java files to be parsed (with no subdirectories)
 
