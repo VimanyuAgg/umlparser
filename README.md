@@ -5,16 +5,16 @@ Personal Project for CMPE202
 This project creats a Parser which converts Java Source Code into a UML Class Diagram as well as Sequence Diagram.
 
 ## Project - Pre-requisites:
-** All Java source files to be parsed should be in the "default" package. 
-** No subdirectories should be present inside the default package.
+* All Java source files to be parsed should be in the "default" package. 
+* No subdirectories should be present inside the default package.
 ## Instructions for umlparser (Class Diagrams)
 Add the below arguments while running the program. (Main method is in **umlparser**/src/main/java/App.java)
 ```
 umlparser <source folder location in quotes> <output file name>
 ```
-Please note that 
-**output file will be a PNG and user does not need to add .png in <output file name>
-**source folder should contain java files to be parsed (with no subdirectories)
+Please note that :
+* output file will be a PNG and user does not need to add .png in <output file name>
+* source folder should contain java files to be parsed (with no subdirectories)
 
 ## Instructions for umlparser (Sequence Diagrams)
 Add the below arguments while running the program. (Main method is in **seq-umlparser**/src/main/java/App.java)
@@ -22,9 +22,9 @@ Add the below arguments while running the program. (Main method is in **seq-umlp
 umlparser <source folder location in quotes> <output file name>
 ```
 Please note that 
-**source folder should contain a Main.java with test sequence being in a main static method
-**output file will be a PNG and user does not need to add .png in <output file name>
-**source folder should contain java files to be parsed (with no subdirectories)
+* source folder should contain a Main.java with test sequence being in a main static method
+* output file will be a PNG and user does not need to add .png in <output file name>
+* source folder should contain java files to be parsed (with no subdirectories)
 
 ## Project scope:
 **Static and Abstract Notation**:  Static and Abstract notation in UML are usually denoted as "underline" and "italic", but rarely used in practice. Thus, parsing this is not included in the scope of this project
