@@ -13,7 +13,7 @@ Add the below arguments while running the program. (Main method is in **umlparse
 umlparser <source folder location in quotes> <output file name>
 ```
 Please note that :
-* output file will be a PNG and user does not need to add .png in <output file name>
+* output file will be a PNG and user does not need to add .png in < output file name>
 * source folder should contain java files to be parsed (with no subdirectories)
 
 ## Instructions for umlparser (Sequence Diagrams)
@@ -23,7 +23,7 @@ umlparser <source folder location in quotes> <output file name>
 ```
 Please note that 
 * source folder should contain a Main.java with test sequence being in a main static method
-* output file will be a PNG and user does not need to add .png in <output file name>
+* output file will be a PNG and user does not need to add .png in < output file name>
 * source folder should contain java files to be parsed (with no subdirectories)
 
 ## Project scope:
