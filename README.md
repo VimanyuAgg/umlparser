@@ -17,7 +17,7 @@ Please note that :
 * source folder should contain java files to be parsed (with no subdirectories)
 
 ## Instructions for umlparser (Sequence Diagrams)
-In order to generate sequence diagram add the <source folder location in quotes> < output file name> for sequence diagram in the argument.
+In order to generate sequence diagram add the < source folder location in quotes> < output file name> for sequence diagram in the argument.
 So that the entire query with class diagram and sequence diagram becomes:
 
 ```
