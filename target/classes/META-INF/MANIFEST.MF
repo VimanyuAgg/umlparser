@@ -1,7 +1,0 @@
-Manifest-Version: 1.0
-Built-By: vimanyu
-Class-Path: lib/plantuml-7999.jar lib/javaparser-core-2.1.0.jar
-Build-Jdk: 1.8.0_131
-Created-By: Maven Integration for Eclipse
-Main-Class: Umlparser
-
