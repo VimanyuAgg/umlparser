@@ -61,19 +61,26 @@ public class ParserSeqDiagram {
         return compilationUnitArray;
     }
 
+    private void initializePlantUMLSyntaxCode(){
+    	planUmlSyntaxCode += "actor client #green\n client -> " + className + " : " + methodName + "\nactivate " + methodClassMappings.get(methodName) + "\n";
+    	
+    }
     public void startParsing() throws Exception {
         compilationUnitArray = getAllcompilationUnitList(sourceFilePath);
         
         createMappings();
-        planUmlSyntaxCode += "actor client #green\n client -> " + className + " : " + methodName + "\nactivate " + methodClassMappings.get(methodName) + "\n";
+        initializePlantUMLSyntaxCode();
         parseAST(methodName);
-        planUmlSyntaxCode += "@enduml";
+       
+        closePlantUMLSyntaxCode();
         System.out.println("Generating Sequence Diagram....");
         
         
         drawDiagram(planUmlSyntaxCode);
         System.out.println("Intermediate plantUml Code: " + planUmlSyntaxCode);
     }
+    
+    
 
     private void parseAST(String methodCall) {
         for (MethodCallExpr methodCallExpression : methodCallMapping.get(methodCall)) {
@@ -94,6 +101,9 @@ public class ParserSeqDiagram {
             }
         }
     }
+    private void closePlantUMLSyntaxCode(){
+    	planUmlSyntaxCode += "@enduml";
+    }
     
     private String drawDiagram(String src) throws IOException {
 
@@ -112,46 +122,62 @@ public class ParserSeqDiagram {
             	
                 ClassOrInterfaceDeclaration classOrInterface = (ClassOrInterfaceDeclaration) compilationUnitTypeList.get(i);
                 shortClassName = classOrInterface.getName();
+                loopThroughAllClassMembers(classOrInterface,shortClassName);
                 
-                for (BodyDeclaration bodyDeclaration : ((TypeDeclaration) classOrInterface).getMembers()) {
-                    boolean validBodyDeclaration = bodyDeclaration instanceof MethodDeclaration;
-                	if (validBodyDeclaration) {
-                        MethodDeclaration methodDeclaration = (MethodDeclaration) bodyDeclaration;
-                        ArrayList<MethodCallExpr> methodCallExprArr = new ArrayList<MethodCallExpr>();
-                      
-                        for (Object methodDeclarationChildren : methodDeclaration.getChildrenNodes()) {
-                            boolean validmethodDeclarationChildren = methodDeclarationChildren instanceof BlockStmt;
-                        	if (validmethodDeclarationChildren) {
-                            
-                        		for (Object expressionStatement : ((Node) methodDeclarationChildren).getChildrenNodes()) {
-                        			boolean validExpressionStatement = expressionStatement instanceof ExpressionStmt;
-                        			if (validExpressionStatement) {
-                                    
-                        				if (((ExpressionStmt) (expressionStatement)).getExpression() instanceof MethodCallExpr) {
-                                        
-                        					methodCallExprArr.add((MethodCallExpr) (((ExpressionStmt) (expressionStatement)).getExpression()));
-                                        }
-                        				else{
-                        					System.out.println(((ExpressionStmt) (expressionStatement)).getExpression()+ "not instance of ExpressionStmt");
-                        				}
-                                    }
-                        			else{
-                                		System.out.println( expressionStatement+" not instance of ExpressionStmt");
-                                	}
-                                }
-                            }
-                        	else{
-                        		System.out.println(methodDeclarationChildren+" not instance of BlockStatement");
-                        	}
-                        }
-                        methodClassMappings.put(methodDeclaration.getName(), shortClassName);
-                        methodCallMapping.put(methodDeclaration.getName(), methodCallExprArr);
-                        
-                        
-                    }
-                }
+                
             }
         }
+    }
+    
+    private void loopThroughAllClassMembers(ClassOrInterfaceDeclaration classOrInterface, String shortClassName){
+    	for (BodyDeclaration bodyDeclaration : ((TypeDeclaration) classOrInterface).getMembers()) {
+            boolean validBodyDeclaration = bodyDeclaration instanceof MethodDeclaration;
+        	if (validBodyDeclaration) {
+                MethodDeclaration methodDeclaration = (MethodDeclaration) bodyDeclaration;
+                ArrayList<MethodCallExpr> methodCallExprArr = new ArrayList<MethodCallExpr>();
+              
+                methodClassMappings.put(methodDeclaration.getName(), shortClassName);
+                methodCallMapping.put(methodDeclaration.getName(), methodCallExprArr);
+                loopThroughMethodDeclarationChildren(methodDeclaration, methodCallExprArr);
+                
+                
+            }
+        }
+    }
+    
+    private void loopThroughMethodDeclarationChildren(MethodDeclaration methodDeclaration, ArrayList<MethodCallExpr> methodCallExprArr){
+    	for (Object methodDeclarationChildren : methodDeclaration.getChildrenNodes()) {
+            boolean validmethodDeclarationChildren = methodDeclarationChildren instanceof BlockStmt;
+        	if (validmethodDeclarationChildren) {
+            
+        		captureAllExpressionStatements(methodDeclarationChildren, methodCallExprArr);
+            }
+        	else{
+        		System.out.println(methodDeclarationChildren+" not instance of BlockStatement");
+        	}
+        }
+    	
+    	
+    }
+    
+    private void captureAllExpressionStatements(Object methodDeclarationChildren, ArrayList<MethodCallExpr> methodCallExprArr){
+    	for (Object expressionStatement : ((Node) methodDeclarationChildren).getChildrenNodes()) {
+			boolean validExpressionStatement = expressionStatement instanceof ExpressionStmt;
+			if (validExpressionStatement) {
+            
+				if (((ExpressionStmt) (expressionStatement)).getExpression() instanceof MethodCallExpr) {
+                
+					methodCallExprArr.add((MethodCallExpr) (((ExpressionStmt) (expressionStatement)).getExpression()));
+                }
+				else{
+					System.out.println(((ExpressionStmt) (expressionStatement)).getExpression()+ "not instance of ExpressionStmt");
+				}
+            }
+			else{
+        		System.out.println( expressionStatement+" not instance of ExpressionStmt");
+        	}
+        }
+    	
     }
 
     

@@ -174,34 +174,7 @@ public class Umlparser {
                             yumlSyntaxMethods += ";";
                         }
                         yumlSyntaxMethods += "+ " + methodDeclaration.getName() + "(";
-                        for (Object childrenNodes : methodDeclaration.getChildrenNodes()) {
-                        	
-                            if (childrenNodes instanceof Parameter) {
-                                Parameter parameter = (Parameter) childrenNodes;
-                                String parameterType = parameter.getType().toString();
-                                String parameterName = parameter.getChildrenNodes().get(0).toString();
-                                yumlSyntaxMethods += parameterName + " : " + parameterType;
-                                if (classMap.containsKey(parameterType)&& !classMap.get(className)) {
-                                    yumlSyntaxClassRelations += "[" + className + "] uses -.->";
-                                    if (classMap.get(parameterType))
-                                        yumlSyntaxClassRelations += "["+YUML_INTERFACE+ parameterType + "]";
-                                    else
-                                        yumlSyntaxClassRelations += "[" + parameterType + "]";
-                                }
-                                yumlSyntaxClassRelations += ",";
-                            } 
-                            else {
-                                String body[] = childrenNodes.toString().split(" ");
-                                for (String str : body) {
-                                    if (classMap.containsKey(str)&& !classMap.get(className)) {
-                                        yumlSyntaxClassRelations += "[" + className + "] uses -.->";
-                                        if (classMap.get(str)) yumlSyntaxClassRelations += "["+YUML_INTERFACE + str+ "]";
-                                        else yumlSyntaxClassRelations += "[" + str + "]";
-                                        yumlSyntaxClassRelations += ",";
-                                    }
-                                }
-                            }
-                        }
+                        loopThroughMethodDeclaration(methodDeclaration,yumlSyntaxMethods, yumlSyntaxClassRelations, className);
                         hasNextParam = true;
                         yumlSyntaxMethods += ") : " + methodDeclaration.getType();
                         
@@ -227,6 +200,42 @@ public class Umlparser {
     	return result;
     }
     
+    private void loopThroughMethodDeclaration(MethodDeclaration methodDeclaration, String yumlSyntaxMethods,String yumlSyntaxClassRelations,String className){
+    	for (Object childrenNodes : methodDeclaration.getChildrenNodes()) {
+        	
+            if (childrenNodes instanceof Parameter) {
+                Parameter parameter = (Parameter) childrenNodes;
+                String parameterType = parameter.getType().toString();
+                String parameterName = parameter.getChildrenNodes().get(0).toString();
+                yumlSyntaxMethods += parameterName + " : " + parameterType;
+                if (classMap.containsKey(parameterType)&& !classMap.get(className)) {
+                    yumlSyntaxClassRelations += "[" + className + "] uses -.->";
+                    if (classMap.get(parameterType))
+                        yumlSyntaxClassRelations += "["+YUML_INTERFACE+ parameterType + "]";
+                    else
+                        yumlSyntaxClassRelations += "[" + parameterType + "]";
+                }
+                yumlSyntaxClassRelations += ",";
+            } 
+            else {
+                String body[] = childrenNodes.toString().split(" ");
+                loopThroughBody(body, className, yumlSyntaxClassRelations);
+            }
+        }
+    	
+    	
+    }
+    private void loopThroughBody(String[] body, String className, String yumlSyntaxClassRelations){
+    	for (String str : body) {
+            if (classMap.containsKey(str)&& !classMap.get(className)) {
+                yumlSyntaxClassRelations += "[" + className + "] uses -.->";
+                if (classMap.get(str)) yumlSyntaxClassRelations += "["+YUML_INTERFACE + str+ "]";
+                else yumlSyntaxClassRelations += "[" + str + "]";
+                yumlSyntaxClassRelations += ",";
+            }
+        }
+    	
+    }
 
     private String parseAST(CompilationUnit compilationUnit) {
         
@@ -328,8 +337,7 @@ public class Umlparser {
     	for (BodyDeclaration bodyDeclaration : ((TypeDeclaration) node).getMembers()) {
             if (bodyDeclaration instanceof FieldDeclaration) {
                 FieldDeclaration fieldDescriptor = ((FieldDeclaration) bodyDeclaration);
-                String scopeAccessor = changeAccessorsToUmlSymbols(bodyDeclaration.toStringWithoutComments().substring(0,
-                                bodyDeclaration.toStringWithoutComments().indexOf(" ")));
+                String scopeAccessor = changeAccessorsToUmlSymbols(bodyDeclaration.toStringWithoutComments().substring(0,bodyDeclaration.toStringWithoutComments().indexOf(" ")));
                 String attributeClassName = changeBrackets(fieldDescriptor.getType().toString());
                 String attributeName = fieldDescriptor.getChildrenNodes().get(1).toString();
                 if (attributeName.contains("=")){
